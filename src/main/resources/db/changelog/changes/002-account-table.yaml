@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: ai
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+        - createTable:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authority
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: authorities
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+            constraintName: fk_authorities_user
+
+  - changeSet:
+      id: 2
+      author: ai
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$10$gJtY6sN4hjJU13pVYmTXH.fupFTYhT2nTkX2Q7g5TcNdTh5mrp/2O
+              - column:
+                  name: enabled
+                  valueBoolean: true
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: authority
+                  value: ROLE_ADMIN
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+              - column:
+                  name: authority
+                  value: ROLE_USER

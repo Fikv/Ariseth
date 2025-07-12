@@ -1,13 +1,14 @@
 <div class="container">
-  <form class="loginForm">
+  <form class="loginForm" (ngSubmit)="onLogin()" #loginForm="ngForm">
     <div class="inputWrapper">
       <i class="fas fa-user"></i>
-      <input type="text" placeholder="Login">
+      <input type="text" placeholder="Login" [(ngModel)]="login" name="login" required>
     </div>
     <div class="inputWrapper">
       <i class="fas fa-lock"></i>
-      <input type="password" placeholder="Password">
+      <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
     </div>
     <button class="btn-hover" type="submit">Sign In</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
   </form>
 </div>
