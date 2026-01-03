@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     width="800" height="533"
-     viewBox="0 0 1536 1024"
+     width="1920" height="1080"
+     viewBox="0 0 1920 1080"
      style="background-color:#ffffff">
 
   <defs>
@@ -18,7 +18,7 @@
     </radialGradient>
   </defs>
 
-  <rect width="1536" height="1024" fill="url(#animBg)" />z
+  <rect width="1920" height="1080" fill="url(#animBg)" />z
 
   <g transform="translate(0 1024) scale(0.10) translate(-450 -2150)">
     <path

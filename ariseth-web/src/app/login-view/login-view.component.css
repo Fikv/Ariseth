@@ -18,15 +18,15 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('/assets/dark_mode_background.svg');
+  background: url('/assets/dark_mode_background_copy.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .loginForm {
-  width: 350px;
-  padding: 40px 30px;
+  width: 20%;
+  height: 25%;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,9 @@ body, html {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -71,8 +73,9 @@ body, html {
 
 .inputWrapper {
   display: flex;
+  width: 70%;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(194, 194, 194);
   border-radius: 30px;
   padding: 10px 15px;
   border: 1px solid rgba(33, 33, 33, 0.2);
@@ -93,10 +96,11 @@ body, html {
 }
 
 .btn-hover {
-  width: 100%;
-  font-size: 16px;
+  width: 70%;
+  font-family: "Georgia", serif;
+  font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: rgb(194, 194, 194);
   cursor: pointer;
   height: 55px;
   text-align:center;
@@ -124,8 +128,8 @@ body, html {
 
 .btn-hover {
   text-align: center;
-  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+  background-image: linear-gradient(to right, #938900, #775d2b, #a6a6a6, #919191);
+  box-shadow: 0 4px 15px 0 rgba(80, 80, 80, 0.75);
 }
 
 
