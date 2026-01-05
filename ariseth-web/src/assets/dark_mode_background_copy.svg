@@ -1,0 +1,89 @@
+<svg width="1920" xmlns="http://www.w3.org/2000/svg" height="1080"
+  id="screenshot-60f01ab3-8094-80b7-8007-323a32b843ee" viewBox="-17703 4943 1920 1080"
+  style="-webkit-print-color-adjust::exact" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none"
+  version="1.1">
+  <g id="shape-60f01ab3-8094-80b7-8007-323a32b843ee">
+    <defs>
+      <clipPath id="frame-clip-60f01ab3-8094-80b7-8007-323a32b843ee-render-122"
+        class="frame-clip frame-clip-def">
+        <rect rx="0" ry="0" x="-17703" y="4943" width="1920" height="1080"
+          transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)">
+        </rect>
+      </clipPath>
+    </defs>
+    <g class="frame-container-wrapper">
+
+      <g class="frame-container-blur">
+        <g class="frame-container-shadows">
+          <g clip-path="url(#frame-clip-60f01ab3-8094-80b7-8007-323a32b843ee-render-122)"
+            fill="none">
+            <g class="fills" id="fills-60f01ab3-8094-80b7-8007-323a32b843ee">
+              <rect rx="0" ry="0" x="-17703" y="4943" width="1920" height="1080"
+                transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"
+                class="frame-background" style="fill:#090909;fill-opacity:1">
+              </rect>
+            </g>
+            <g class="frame-children">
+              <g transform="translate(-17745 5870) scale(0.10) translate(100 100)">
+                <defs>
+                  <filter id="blur1">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+                  </filter>
+                </defs>
+                <path
+                  d="M762,60 L719,144 L734,356 L672,592 L706,694 L623,536 L638,224 L577,384 L560,569 L586,691 L764,871 L942,685 L964,518 L886,224 L903,531 L817,695 L852,592 L789,357 L804,144 Z"
+                  fill="none"
+                  stroke="#e6c679"
+                  stroke-width="32"
+                  stroke-opacity="0.18"
+                  filter="url(#blur1)"
+                />
+                <path
+                  d="M762,60 L719,144 L734,356 L672,592 L706,694 L623,536 L638,224 L577,384 L560,569 L586,691 L764,871 L942,685 L964,518 L886,224 L903,531 L817,695 L852,592 L789,357 L804,144 Z"
+                  fill="none"
+                  stroke="#c9a94b"
+                  stroke-width="8"
+                />
+                <path
+                  d="M623,536 Q600,600 664,760"
+                  fill="none"
+                  stroke="#bfa64b"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                  stroke-opacity="0.55"
+                />
+                <path
+                  d="M903,531 Q930,600 866,760"
+                  fill="none"
+                  stroke="#bfa64b"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                  stroke-opacity="0.55"
+                />
+                <path
+                  d="M586,691 Q764,900 942,685"
+                  fill="none"
+                  stroke="#e6c679"
+                  stroke-width="6"
+                  stroke-opacity="0.22"
+                />
+                <text
+                  x="764" y="970"
+                  text-anchor="middle"
+                  font-family="Arial, Helvetica, sans-serif"
+                  font-size="110"
+                  fill="white"
+                  fill-opacity="0.86"
+                  letter-spacing="18"
+                  style="text-transform: lowercase;"
+                >ariseth</text>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+</svg>
+

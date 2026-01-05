@@ -1,0 +1,135 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/assets/dark_mode_background_copy.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.loginForm {
+  width: 20%;
+  height: 25%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(6.3px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loginForm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.loginForm::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+.inputWrapper {
+  display: flex;
+  width: 70%;
+  align-items: center;
+  background: rgb(194, 194, 194);
+  border-radius: 30px;
+  padding: 10px 15px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+}
+
+.inputWrapper i {
+  color: #000000;
+  margin-right: 10px;
+}
+
+.inputWrapper input {
+  border: none;
+  background: transparent;
+  color: #000000;
+  width: 100%;
+  font-size: 16px;
+  outline: none;
+}
+
+.btn-hover {
+  width: 70%;
+  font-family: "Georgia", serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(194, 194, 194);
+  cursor: pointer;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover {
+  text-align: center;
+  background-image: linear-gradient(to right, #938900, #775d2b, #a6a6a6, #919191);
+  box-shadow: 0 4px 15px 0 rgba(80, 80, 80, 0.75);
+}
+
+
