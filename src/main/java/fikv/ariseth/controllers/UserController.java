@@ -8,7 +8,7 @@ import fikv.ariseth.entities.User;
 import fikv.ariseth.services.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 public class UserController {
 
 	private final UserService userService;

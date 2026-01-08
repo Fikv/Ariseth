@@ -10,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -22,6 +23,7 @@ import jakarta.persistence.TemporalType;
 
 
 @Table(name = "users")
+@Entity
 public class User extends BaseEntity {
 
 	@Min(value = 4, message = VALUE_IS_TOO_SHORT)
@@ -54,6 +56,8 @@ public class User extends BaseEntity {
 		this.email = email;
 		this.createdTimestamp = createdTimestamp;
 	}
+
+	public User() {}
 
 	public String getLogin() {
 		return login;

@@ -2,14 +2,16 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fikv.ariseth.entities.User;
 import fikv.ariseth.repositories.UserRepository;
-import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
+@Qualifier("userService")
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
@@ -31,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<User> getAll() {
 		return userRepository.findAll();
 	}
