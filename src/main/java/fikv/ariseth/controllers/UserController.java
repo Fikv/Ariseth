@@ -1,5 +1,6 @@
 package fikv.ariseth.controllers;
 
+import fikv.ariseth.records.UserRequestDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class UserController {
 	}
 
 	@PostMapping
-	public User create(@RequestBody User user) {
+	public User create(@RequestBody UserRequestDTO user) {
 		return userService.create(user);
 	}
 

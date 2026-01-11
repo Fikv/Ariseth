@@ -2,6 +2,8 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
+import fikv.ariseth.mappers.UserMapper;
+import fikv.ariseth.records.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,14 +17,16 @@ import fikv.ariseth.repositories.UserRepository;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
+	private final UserMapper userMapper;
 
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
 		this.userRepository = userRepository;
-	}
+        this.userMapper = userMapper;
+    }
 
 	@Override
-	public User create(User user) {
-		return userRepository.save(user);
+	public User create(UserRequestDTO user) {
+		return userRepository.save(userMapper.toEntity(user));
 	}
 
 	@Override

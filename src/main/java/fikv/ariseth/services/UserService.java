@@ -3,10 +3,11 @@ package fikv.ariseth.services;
 import java.util.List;
 
 import fikv.ariseth.entities.User;
+import fikv.ariseth.records.UserRequestDTO;
 
 public interface UserService {
 
-	User create(User user);
+	User create(UserRequestDTO user);
 
 	User getById(Long id);
 
