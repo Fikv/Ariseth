@@ -20,14 +20,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(AbstractHttpConfigurer::disable);
-		http.authorizeHttpRequests(requset -> requset.anyRequest().authenticated());
-		http.formLogin(Customizer.withDefaults());
-		http.httpBasic(Customizer.withDefaults());
-		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		return http.build();
-	}
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(AbstractHttpConfigurer::disable)
+				.authorizeHttpRequests(request -> request.anyRequest().authenticated())
+				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults())
+				.sessionManagement(customizer ->
+						customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.build();
+
+    }
 
 }
