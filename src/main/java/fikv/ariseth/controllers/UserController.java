@@ -1,6 +1,6 @@
 package fikv.ariseth.controllers;
 
-import fikv.ariseth.records.UserRequestDTO;
+import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

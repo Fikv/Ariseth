@@ -1,4 +1,4 @@
-package fikv.ariseth.records;
+package fikv.ariseth.dtos;
 
 import javax.validation.constraints.NotNull;
 
