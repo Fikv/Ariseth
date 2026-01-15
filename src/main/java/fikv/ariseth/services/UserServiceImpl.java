@@ -3,8 +3,11 @@ package fikv.ariseth.services;
 import java.util.List;
 
 import fikv.ariseth.mappers.UserMapper;
-import fikv.ariseth.records.UserRequestDTO;
+import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +17,7 @@ import fikv.ariseth.repositories.UserRepository;
 @Service
 @Transactional
 @Qualifier("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
@@ -57,5 +60,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(Long id) {
 		userRepository.deleteById(id);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		//TODO
+		//fix .get()
+
+		return userMapper.toUserDetail(userRepository.findByLogin(username).get());
 	}
 }

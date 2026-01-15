@@ -3,7 +3,7 @@ package fikv.ariseth.services;
 import java.util.List;
 
 import fikv.ariseth.entities.User;
-import fikv.ariseth.records.UserRequestDTO;
+import fikv.ariseth.dtos.UserRequestDTO;
 
 public interface UserService {
 

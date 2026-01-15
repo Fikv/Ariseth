@@ -1,7 +1,8 @@
 package fikv.ariseth.mappers;
 
 import fikv.ariseth.entities.User;
-import fikv.ariseth.records.UserRequestDTO;
+import fikv.ariseth.entities.UserDetailsImpl;
+import fikv.ariseth.dtos.UserRequestDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,4 +16,7 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdTimestamp", expression = "java(Date.from(Instant.now()))")
     User toEntity(UserRequestDTO userRequestDTO);
+
+
+    UserDetailsImpl toUserDetail(User user);
 }
