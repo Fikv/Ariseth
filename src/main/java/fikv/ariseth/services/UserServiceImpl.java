@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import fikv.ariseth.entities.User;
 import fikv.ariseth.repositories.UserRepository;
 
+import static fikv.ariseth.Util.Constants.Messages.USERNAME_HAS_BEEN_NOT_FOUND;
+
 @Service
 @Transactional
 @Qualifier("userService")
@@ -65,9 +67,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		//TODO
-		//fix .get()
-
-		return userMapper.toUserDetail(userRepository.findByLogin(username).get());
+		return userMapper.toUserDetail(userRepository
+				.findByLogin(username).orElseThrow(()
+						-> new UsernameNotFoundException(USERNAME_HAS_BEEN_NOT_FOUND)));
 	}
 }

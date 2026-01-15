@@ -15,12 +15,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-/**TODO
- * WRTIE CONTROLLER SERVICE FOR CREATING USERS
- * TEST
- * WRITE TEST CONTROLLER, SERVICE
- */
-
 
 @Table(name = "users")
 @Entity
