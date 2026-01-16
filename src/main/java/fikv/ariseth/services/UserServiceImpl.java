@@ -5,9 +5,11 @@ import java.util.List;
 import fikv.ariseth.mappers.UserMapper;
 import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +26,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
 
+	/** TODO
+	 * CHANGE PROPERTY TO ENV, USE 1 INSTANCE OF BCRYPT
+	 */
+	BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(14);
+
 	public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
 		this.userRepository = userRepository;
         this.userMapper = userMapper;
@@ -31,14 +38,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public User create(UserRequestDTO user) {
-		return userRepository.save(userMapper.toEntity(user));
+		UserRequestDTO userAfterEncoding = new UserRequestDTO(user.login(),
+				bCrypt.encode(user.password()), user.email());
+
+		return userRepository.save(userMapper.toEntity(userAfterEncoding));
 	}
 
 	@Override
 	@Transactional
 	public User getById(Long id) {
 		return userRepository.findById(id)
-							 .orElseThrow(() -> new RuntimeException("User not found"));
+							 .orElseThrow(() -> new RuntimeException(USERNAME_HAS_BEEN_NOT_FOUND));
 	}
 
 	@Override

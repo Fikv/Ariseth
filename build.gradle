@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
