@@ -17,6 +17,6 @@ public interface UserMapper {
     @Mapping(target = "createdTimestamp", expression = "java(Date.from(Instant.now()))")
     User toEntity(UserRequestDTO userRequestDTO);
 
-
+    @Mapping(target = "username", source ="user.login")
     UserDetailsImpl toUserDetail(User user);
 }

@@ -2,10 +2,14 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
+import fikv.ariseth.entities.UserDetailsImpl;
 import fikv.ariseth.mappers.UserMapper;
 import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,15 +29,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
+	private final ApplicationContext applicationContext;
+	private final JWTService jwtService;
 
 	/** TODO
 	 * CHANGE PROPERTY TO ENV, USE 1 INSTANCE OF BCRYPT
 	 */
 	BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(14);
 
-	public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+	public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, ApplicationContext applicationContext, JWTService jwtService) {
 		this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.applicationContext = applicationContext;
+        this.jwtService = jwtService;
     }
 
 	@Override
@@ -73,6 +81,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
+
+	@Override
+	public String verify(UserRequestDTO userRequestDTO) {
+		Authentication authentication = applicationContext.getBean(AuthenticationManager.class)
+				.authenticate(new UsernamePasswordAuthenticationToken(
+						userRequestDTO.login(), userRequestDTO.password()));
+
+		if(authentication.isAuthenticated()) {
+			return jwtService.generateToken(userRequestDTO.login());
+		}
+
+		/** TODO
+		 * FIX
+		 */
+
+		return "no";
+	}
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
