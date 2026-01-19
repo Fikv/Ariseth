@@ -18,9 +18,14 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@PostMapping
-	public User create(@RequestBody UserRequestDTO user) {
+	@PostMapping("/register")
+	public User register(@RequestBody UserRequestDTO user) {
 		return userService.create(user);
+	}
+
+	@PostMapping("/login")
+	public String login(@RequestBody UserRequestDTO user) {
+		return userService.verify(user);
 	}
 
 	@GetMapping("/{id}")
