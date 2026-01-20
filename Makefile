@@ -12,10 +12,10 @@ setup:
 	@if [ ! -f .env ]; then cp .env.example .env; fi
 
 run: setup
-	export $$(cat .env | xargs) && ./gradlew bootRun
+	set -a && . ./.env && set +a && ./gradlew bootRun
 
 test: setup
-	export $$(cat .env | xargs) && ./gradlew test
+	set -a && . ./.env && set +a && ./gradlew test
 
-env-show:
-	export $$(cat .env | xargs) && env | grep -E 'SECURITY_|DB_|APP_'
+env-show: setup
+	set -a && . ./.env && set +a && env | grep -E 'SECURITY_|DB_|APP_'
