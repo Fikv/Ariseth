@@ -62,4 +62,11 @@ public class WebSecurityConfig {
         return config.getAuthenticationManager();
     }
 
+    public UserServiceImpl getUserService() {
+        return userService;
+    }
+
+    public JwtFilter getJwtFilter() {
+        return jwtFilter;
+    }
 }
