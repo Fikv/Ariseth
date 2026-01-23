@@ -2,7 +2,6 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
-import fikv.ariseth.entities.UserDetailsImpl;
 import fikv.ariseth.mappers.UserMapper;
 import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
