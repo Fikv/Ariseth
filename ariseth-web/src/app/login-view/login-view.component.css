@@ -128,7 +128,7 @@ body, html {
 
 .btn-hover {
   text-align: center;
-  background-image: linear-gradient(to right, #938900, #775d2b, #a6a6a6, #919191);
+  background-image: linear-gradient(to right, #313030, #2a2a2a, #a6a6a6, #919191);
   box-shadow: 0 4px 15px 0 rgba(80, 80, 80, 0.75);
 }
 
