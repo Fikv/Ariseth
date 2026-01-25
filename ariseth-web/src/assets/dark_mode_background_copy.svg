@@ -8,35 +8,6 @@
   version="1.1"
   style="-webkit-print-color-adjust:exact"
 >
-
-  <defs>
-
-    <linearGradient id="cornerLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="white" stop-opacity="0.4"/>
-      <stop offset="40%" stop-color="white" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="white" stop-opacity="0"/>
-    </linearGradient>
-
-    <linearGradient id="diagonalLight" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
-      <stop offset="50%" stop-color="white" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="white" stop-opacity="0"/>
-    </linearGradient>
-
-    <filter id="lightBlur">
-      <feGaussianBlur stdDeviation="60"/>
-    </filter>
-
-    <clipPath id="frame-clip-60f01ab3-8094-80b7-8007-323a32b843ee-render-122">
-      <rect x="-17703" y="4943" width="1920" height="1080"/>
-    </clipPath>
-
-    <filter id="blur1">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="5"/>
-    </filter>
-
-  </defs>
-
   <g clip-path="url(#frame-clip-60f01ab3-8094-80b7-8007-323a32b843ee-render-122)">
 
     <rect
@@ -101,14 +72,7 @@
         stroke-opacity="0.18"
         filter="url(#blur1)"
       >
-        <animate
-          attributeName="stroke-opacity"
-          values="0.15;0.25;0.15"
-          dur="8s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
-        />
+
       </path>
 
       <path

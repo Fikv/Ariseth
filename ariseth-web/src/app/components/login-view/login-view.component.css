@@ -18,10 +18,8 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('/assets/dark_mode_background_copy.svg');
-  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background: url('/assets/dark_mode_background_copy.svg') no-repeat center;
 }
 
 .loginForm {
