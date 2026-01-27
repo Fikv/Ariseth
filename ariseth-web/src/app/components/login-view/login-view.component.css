@@ -27,7 +27,12 @@
 
 .loginForm {
   position: relative;
-  width: clamp(280px, 22vw, 420px);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 2vh;
+  width: clamp(280px, 22vw, 422px);
   height: clamp(200px, 12vw, 400px);
 
   background: rgba(255, 255, 255, 0.18);
@@ -42,6 +47,18 @@
 }
 
 
+input {
+  display: inline-block;
+  transform: translateX(46%);
+  background: none;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-radius: 10px;
+  border-width: 2px;
+  width: 50%;
+  height: clamp(25px, 2vh, 35px);
+  font-family: Consolas, monospace;
+}
 
 .logo {
   position: fixed;
