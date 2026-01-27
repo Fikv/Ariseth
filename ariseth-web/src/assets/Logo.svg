@@ -1,0 +1,87 @@
+<svg
+  width="1920"
+  height="1080"
+  viewBox="0 0 1920 1080"
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+>
+  <defs>
+    <!-- LOGO BLUR -->
+    <filter id="blur1">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <!-- TRANSPARENT BACKGROUND -->
+  <rect width="1920" height="1080" fill="transparent"/>
+
+  <!-- LOGO CENTERED -->
+  <g transform="translate(960 540)">
+
+    <!-- GLOW STROKE -->
+    <path
+      d="M762,60 L719,144 L734,356 L672,592 L706,694 L623,536 L638,224 L577,384 L560,569 L586,691 L764,871 L942,685 L964,518 L886,224 L903,531 L817,695 L852,592 L789,357 L804,144 Z"
+      fill="none"
+      stroke="#e6c679"
+      stroke-width="32"
+      stroke-opacity="0.18"
+      filter="url(#blur1)"
+      transform="translate(-762, -465) scale(1)"
+    />
+
+    <!-- MAIN STROKE -->
+    <path
+      d="M762,60 L719,144 L734,356 L672,592 L706,694 L623,536 L638,224 L577,384 L560,569 L586,691 L764,871 L942,685 L964,518 L886,224 L903,531 L817,695 L852,592 L789,357 L804,144 Z"
+      fill="none"
+      stroke="#c9a94b"
+      stroke-width="8"
+      transform="translate(-762, -465) scale(1)"
+    />
+
+    <!-- DETAILS -->
+    <path
+      d="M623,536 Q600,600 664,760"
+      fill="none"
+      stroke="#bfa64b"
+      stroke-width="7"
+      stroke-linecap="round"
+      stroke-opacity="0.55"
+      transform="translate(-762, -465) scale(1)"
+    />
+
+    <path
+      d="M903,531 Q930,600 866,760"
+      fill="none"
+      stroke="#bfa64b"
+      stroke-width="7"
+      stroke-linecap="round"
+      stroke-opacity="0.55"
+      transform="translate(-762, -465) scale(1)"
+    />
+
+    <path
+      d="M586,691 Q764,900 942,685"
+      fill="none"
+      stroke="#e6c679"
+      stroke-width="6"
+      stroke-opacity="0.22"
+      transform="translate(-762, -465) scale(1)"
+    />
+
+    <!-- TEXT -->
+    <text
+      x="0"
+      y="505"
+      text-anchor="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="110"
+      fill="white"
+      fill-opacity="0.86"
+      letter-spacing="18"
+      style="text-transform: lowercase;"
+    >
+      ariseth
+    </text>
+
+  </g>
+</svg>
