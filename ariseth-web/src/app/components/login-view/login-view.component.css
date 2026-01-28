@@ -6,21 +6,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /*background: linear-gradient(*/
-  /*  90deg,*/
-  /*  #000000 0%,*/
-  /*  #4b4b4b 30%,*/
-  /*  #494949 50%,*/
-  /*  #4b4b4b 75%,*/
-  /*  #000000 100%*/
-  /*);*/
   background: linear-gradient(
     90deg,
-    #000000 0%,
-    #6c6c6c 30%,
-    #c0c0c0 50%,
-    #6c6c6c 75%,
-    #000000 100%
+    #191a1a 0%,
+    #2e2f2f 30%,
+    #4d5050 50%,
+    #838a84 75%,
+    #bdbaba 100%
   );
   overflow: hidden;
 }
@@ -40,8 +32,9 @@
   align-content: center;
   justify-content: center;
   gap: 2vh;
-  width: clamp(340px, 24vw, 422px);
-  height: clamp(340px, 24vw, 422px);
+  border-radius: 10px;
+  width: clamp(150px, 19vw, 400px);
+  height: clamp(200px, 35vh, 400px);
   background: rgba(12, 13, 19, 0.99);
   border-style: none;
 }
@@ -49,48 +42,50 @@
 .loginText {
   position:relative;
   transform: translateX(90%);
-  height: clamp(30px, 1vh, 45px);
-  bottom: 10%;
+  height: clamp(5px, 1vh, 25px);
+  bottom: 15%;
   background: none;
   color: #bdbdbd;
   right: 82%;
-  font-size: 3.5vh;
+  font-size: clamp(5px, 4vh, 40px);
   font-family: Impact, serif;
   font-style: right;
 }
 
 input {
-  display: inline-block;
+  display: flex;
   transform: translateX(10%);
   background-color: rgba(41, 41, 44, 0.96);
   border:0;
   color: white;
-  border-bottom: 1px solid silver;
-  width: 80%;
-  font-size: 2.0vh;
-  height: clamp(50px, 6vh, 70px);
+  border-bottom: 3px solid #a18c32;
+  width: 81%;
+  font-size: clamp(10px, 1.5vh, 15px);
+  height: clamp(15px, 4vh, 30px);
   font-family: Consolas, monospace;
 }
 
 input::placeholder {
-  font-size: 2.0vh;
+  font-size: clamp(10px, 1.5vh, 15px);
+  padding: 10px;
   color: #bbbaba;
 }
-
 
 .signInButton {
   position: relative;
   width: 82%;
-  height: 5vh;
+  height: clamp(20px, 7vh, 40px);
+  color: #000000;
+  border-radius: 5px;
   transform: translateX(10%);
-  background: linear-gradient(
-    90deg,
-    #bebc28 0%,
-    #bd7629 30%,
-    #ab7c1c 50%,
-    #bd7629 75%,
-    #bebc28 100%
-  );
+  border-style: none;
+  font-size: clamp(15px, 2vh, 20px);
+  background: rgba(255, 208, 65, 0.91);
+}
+
+.signInButton:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(239, 193, 48, 0.91);
 }
 
 .logo {
