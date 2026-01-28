@@ -6,13 +6,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /*background: linear-gradient(*/
+  /*  90deg,*/
+  /*  #000000 0%,*/
+  /*  #4b4b4b 30%,*/
+  /*  #494949 50%,*/
+  /*  #4b4b4b 75%,*/
+  /*  #000000 100%*/
+  /*);*/
   background: linear-gradient(
-    45deg,
-    #161616 0%,
-    #222 25%,
-    #2f2f2f 50%,
-    #3a3a3a 75%,
-    #595858 100%
+    90deg,
+    #000000 0%,
+    #6c6c6c 30%,
+    #c0c0c0 50%,
+    #6c6c6c 75%,
+    #000000 100%
   );
   overflow: hidden;
 }
@@ -32,32 +40,57 @@
   align-content: center;
   justify-content: center;
   gap: 2vh;
-  width: clamp(280px, 22vw, 422px);
-  height: clamp(200px, 12vw, 400px);
-
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(25px);
-
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.18);
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4);
+  width: clamp(340px, 24vw, 422px);
+  height: clamp(340px, 24vw, 422px);
+  background: rgba(12, 13, 19, 0.99);
+  border-style: none;
 }
 
+.loginText {
+  position:relative;
+  transform: translateX(90%);
+  height: clamp(30px, 1vh, 45px);
+  bottom: 10%;
+  background: none;
+  color: #bdbdbd;
+  right: 82%;
+  font-size: 3.5vh;
+  font-family: Impact, serif;
+  font-style: right;
+}
 
 input {
   display: inline-block;
-  transform: translateX(46%);
-  background: none;
-  border-bottom-style: solid;
-  border-bottom-color: black;
-  border-radius: 10px;
-  border-width: 2px;
-  width: 50%;
-  height: clamp(25px, 2vh, 35px);
+  transform: translateX(10%);
+  background-color: rgba(41, 41, 44, 0.96);
+  border:0;
+  color: white;
+  border-bottom: 1px solid silver;
+  width: 80%;
+  font-size: 2.0vh;
+  height: clamp(50px, 6vh, 70px);
   font-family: Consolas, monospace;
+}
+
+input::placeholder {
+  font-size: 2.0vh;
+  color: #bbbaba;
+}
+
+
+.signInButton {
+  position: relative;
+  width: 82%;
+  height: 5vh;
+  transform: translateX(10%);
+  background: linear-gradient(
+    90deg,
+    #bebc28 0%,
+    #bd7629 30%,
+    #ab7c1c 50%,
+    #bd7629 75%,
+    #bebc28 100%
+  );
 }
 
 .logo {
