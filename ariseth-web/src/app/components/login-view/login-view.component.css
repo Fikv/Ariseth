@@ -59,7 +59,9 @@ input {
   border:0;
   color: white;
   border-bottom: 3px solid #a18c32;
-  width: 81%;
+  width: 79%;
+  box-sizing: content-box;
+  padding-left: 10px;
   font-size: clamp(10px, 1.5vh, 15px);
   height: clamp(15px, 4vh, 30px);
   font-family: Consolas, monospace;
@@ -67,7 +69,6 @@ input {
 
 input::placeholder {
   font-size: clamp(10px, 1.5vh, 15px);
-  padding: 10px;
   color: #bbbaba;
 }
 
