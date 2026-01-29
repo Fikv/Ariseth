@@ -8,11 +8,11 @@
   align-items: center;
   background: linear-gradient(
     90deg,
-    #191a1a 0%,
-    #2e2f2f 30%,
-    #4d5050 50%,
-    #838a84 75%,
-    #bdbaba 100%
+    #000000 0%,
+    #262626 30%,
+    #2a2a2a 50%,
+    #3a3939 75%,
+    #282727 100%
   );
   overflow: hidden;
 }
@@ -52,14 +52,41 @@
   font-style: right;
 }
 
+.loginInputDiv {
+  position: relative;
+}
+
+.loginInputDiv i {
+  position: absolute;
+  right: 13%;
+  color: #bdbdbd;
+  top: 45%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.passwordInputDiv {
+  position: relative;
+}
+
+.passwordInputDiv i {
+  position: absolute;
+  right: 13%;
+  color: #bdbdbd;
+  top: 45%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 input {
   display: flex;
   transform: translateX(10%);
   background-color: rgba(41, 41, 44, 0.96);
   border:0;
   color: white;
+  padding-right: 30px;
   border-bottom: 3px solid #a18c32;
-  width: 79%;
+  width: 71%;
   box-sizing: content-box;
   padding-left: 10px;
   font-size: clamp(10px, 1.5vh, 15px);
@@ -76,7 +103,7 @@ input::placeholder {
   position: relative;
   width: 82%;
   height: clamp(20px, 7vh, 40px);
-  color: #000000;
+  color: rgba(12, 13, 19, 0.99);
   border-radius: 5px;
   transform: translateX(10%);
   border-style: none;
@@ -85,8 +112,10 @@ input::placeholder {
 }
 
 .signInButton:hover {
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
   color: rgba(255, 255, 255, 1);
-  box-shadow: 0 5px 15px rgba(239, 193, 48, 0.91);
+  box-shadow: 5px 5px 0px rgba(182, 148, 41, 0.91);
 }
 
 .logo {
