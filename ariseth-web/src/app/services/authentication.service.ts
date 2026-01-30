@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:8080'; // TODO: change
+  private apiUrl = environment.apiUrl;
   private tokenKey = 'auth_token';
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
@@ -23,7 +24,6 @@ export class AuthenticationService {
 
     return this.http.post<any>(`${this.apiUrl}/auth/login`, body).pipe(
       tap(response => {
-        // TODO: adjust to your backend response
         if (response?.token) {
           localStorage.setItem(this.tokenKey, response.token);
           this.isLoggedInSubject.next(true);
