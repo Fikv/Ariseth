@@ -2,6 +2,7 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
+import fikv.ariseth.dtos.LoginResponse;
 import fikv.ariseth.entities.User;
 import fikv.ariseth.dtos.UserRequestDTO;
 
@@ -17,5 +18,5 @@ public interface UserService {
 
 	void delete(Long id);
 
-	String verify(UserRequestDTO userRequestDTO);
+	LoginResponse verify(UserRequestDTO userRequestDTO);
 }

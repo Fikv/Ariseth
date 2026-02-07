@@ -49,7 +49,7 @@ class UserControllerTest {
     void login() throws Exception {
         UserRequestDTO dto = new UserRequestDTO("User", "password", "email@example.com");
 
-        given(userService.verify(any(UserRequestDTO.class))).willReturn("token");
+        given(userService.verify(any(UserRequestDTO.class)).token()).willReturn("token");
 
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -1,5 +1,6 @@
 package fikv.ariseth.controllers;
 
+import fikv.ariseth.dtos.LoginResponse;
 import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody UserRequestDTO user) {
+	public LoginResponse login(@RequestBody UserRequestDTO user) {
 		return userService.verify(user);
 	}
 

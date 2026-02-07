@@ -1,5 +1,6 @@
 package fikv.ariseth.services;
 
+import fikv.ariseth.dtos.LoginResponse;
 import fikv.ariseth.dtos.UserRequestDTO;
 import fikv.ariseth.entities.User;
 import fikv.ariseth.entities.UserDetailsImpl;
@@ -143,9 +144,9 @@ class UserServiceTest {
         when(authentication.isAuthenticated()).thenReturn(true);
         when(jwtService.generateToken("john")).thenReturn("jwt-token");
 
-        String token = userService.verify(userRequestDTO);
+        fikv.ariseth.dtos.LoginResponse loginResponse = userService.verify(userRequestDTO);
 
-        assertThat(token).isEqualTo("jwt-token");
+        assertThat(loginResponse.token()).isEqualTo("jwt-token");
     }
 
     @Test

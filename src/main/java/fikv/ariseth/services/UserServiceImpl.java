@@ -2,6 +2,8 @@ package fikv.ariseth.services;
 
 import java.util.List;
 
+import fikv.ariseth.dtos.LoginResponse;
+import fikv.ariseth.dtos.UserResponse;
 import fikv.ariseth.mappers.UserMapper;
 import fikv.ariseth.dtos.UserRequestDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -82,20 +84,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public String verify(UserRequestDTO userRequestDTO) {
+	public LoginResponse verify(UserRequestDTO userRequestDTO) {
 		Authentication authentication = applicationContext.getBean(AuthenticationManager.class)
 				.authenticate(new UsernamePasswordAuthenticationToken(
 						userRequestDTO.login(), userRequestDTO.password()));
 
 		if(authentication.isAuthenticated()) {
-			return jwtService.generateToken(userRequestDTO.login());
+			return new LoginResponse(jwtService.generateToken(userRequestDTO.login()));
 		}
 
 		/** TODO
 		 * FIX
 		 */
 
-		return "no";
+		return new LoginResponse(null);
 	}
 
 
