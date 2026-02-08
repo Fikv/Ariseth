@@ -4,21 +4,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {}
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && !!window.localStorage;
+  }
 
   setItem(key: string, value: string): void {
-    localStorage.setItem(key, value);
+    if (!this.isBrowser()) return;
+    window.localStorage.setItem(key, value);
   }
 
   getItem(key: string): string | null {
-    return localStorage.getItem(key);
+    if (!this.isBrowser()) return null;
+    return window.localStorage.getItem(key);
   }
 
   removeItem(key: string): void {
-    localStorage.removeItem(key);
+    if (!this.isBrowser()) return;
+    window.localStorage.removeItem(key);
   }
 
   clear(): void {
-    localStorage.clear();
+    if (!this.isBrowser()) return;
+    window.localStorage.clear();
   }
 }

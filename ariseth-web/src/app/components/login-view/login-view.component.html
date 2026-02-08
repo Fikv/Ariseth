@@ -3,12 +3,12 @@
     <label class="loginText">SIGN IN</label>
     <div class="loginInputDiv">
       <input class="loginInput" placeholder="Login" [value]="loginInput()"
-        (input)="loginInput.set($any($event.target).value)">
+        (input)="loginInput.set($any($event.target).value)" (keydown.enter)="onLogin()">
       <i class="fa fa-user"></i>
     </div>
     <div class="passwordInputDiv">
       <input class="passwordInput" placeholder="Password" type="password" [value]="passwordInput()"
-        (input)="passwordInput.set($any($event.target).value)">
+        (input)="passwordInput.set($any($event.target).value)" (keydown.enter)="onLogin()">
       <i class="fa fa-key"></i>
     </div>
     <button class="signInButton" (click)="onLogin()" type="button">SIGN IN</button>

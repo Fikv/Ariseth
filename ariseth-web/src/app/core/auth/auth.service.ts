@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from '../../common/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private tokenKey = 'token';
+  private tokenKey : string = 'token';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private ls: LocalStorageService) {}
 
   onLogin(obj: any) : Observable<any> {
     console.log("probuje")
@@ -17,11 +18,11 @@ export class AuthService {
   }
 
   setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
+    this.ls.setItem(this.tokenKey, token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    return this.ls.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
@@ -29,7 +30,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(this.tokenKey);
+    this.ls.removeItem(this.tokenKey);
   }
 
 }
