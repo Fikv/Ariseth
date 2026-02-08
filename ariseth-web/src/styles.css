@@ -5,14 +5,10 @@ html, body {
   padding: 0;
 }
 
-body {
-   background: linear-gradient(
-    90deg,
-    #000000 0%,
-    #262626 30%,
-    #2a2a2a 50%,
-    #3a3939 75%,
-    #282727 100%
-  );
+body { background: linear-gradient(115deg,
+  rgba(255, 200, 60, 0.04),
+  transparent 60%), 
+  linear-gradient(295deg,
+  rgba(80, 120, 255, 0.05),
+  transparent 60%), #141624;
 }
-

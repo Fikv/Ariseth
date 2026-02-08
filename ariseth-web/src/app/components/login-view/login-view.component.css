@@ -24,10 +24,14 @@
   align-content: center;
   justify-content: center;
   gap: 2vh;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   width: clamp(150px, 19vw, 400px);
   height: clamp(200px, 35vh, 400px);
-  background: rgba(12, 13, 19, 0.99);
+   background: rgba(12, 13, 19, 0.99);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
   border-style: none;
 }
 

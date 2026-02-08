@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { LocalStorageService } from '../../common/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-view',
@@ -16,6 +17,7 @@ export class LoginViewComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private ls: LocalStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class LoginViewComponent implements OnInit {
     this.authService.onLogin(loginObj).subscribe({
       next: (resp) => {
         this.authService.setToken(resp.token)
-        this
+        this.router.navigate(["/dashboard"])
       },
       error: (err) => {
         console.error('LOGIN ERROR', err);
