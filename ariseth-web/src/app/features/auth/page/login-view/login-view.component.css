@@ -1,0 +1,126 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.loginForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 2vh;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  width: clamp(150px, 19vw, 400px);
+  height: clamp(200px, 35vh, 400px);
+   background: rgba(12, 13, 19, 0.99);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  border-style: none;
+}
+
+.loginText {
+  position:relative;
+  transform: translateX(90%);
+  height: clamp(5px, 1vh, 25px);
+  bottom: 15%;
+  background: none;
+  color: #bdbdbd;
+  right: 82%;
+  font-size: clamp(5px, 4vh, 40px);
+  font-family: Impact, serif;
+  font-style: right;
+}
+
+.loginInputDiv {
+  position: relative;
+}
+
+.loginInputDiv i {
+  position: absolute;
+  right: 13%;
+  color: #bdbdbd;
+  top: 45%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.passwordInputDiv {
+  position: relative;
+}
+
+.passwordInputDiv i {
+  position: absolute;
+  right: 13%;
+  color: #bdbdbd;
+  top: 45%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+input {
+  display: flex;
+  transform: translateX(10%);
+  background-color: rgba(41, 41, 44, 0.96);
+  border:0;
+  color: white;
+  padding-right: 30px;
+  border-bottom: 3px solid #a18c32;
+  width: 71%;
+  box-sizing: content-box;
+  padding-left: 10px;
+  font-size: clamp(10px, 1.5vh, 15px);
+  height: clamp(15px, 4vh, 30px);
+  font-family: Consolas, monospace;
+}
+
+input::placeholder {
+  font-size: clamp(10px, 1.5vh, 15px);
+  color: #bbbaba;
+}
+
+.signInButton {
+  position: relative;
+  width: 82%;
+  height: clamp(20px, 7vh, 40px);
+  color: rgba(12, 13, 19, 0.99);
+  border-radius: 5px;
+  transform: translateX(10%);
+  border-style: none;
+  font-size: clamp(15px, 2vh, 20px);
+  background: rgba(255, 208, 65, 0.91);
+}
+
+.signInButton:hover {
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 5px 5px 0px rgba(182, 148, 41, 0.91);
+}
+
+.logo {
+  position: fixed;
+  left: 40px;
+  bottom: 10px;
+  z-index: 100;
+  transform: translateX(-50%);
+
+  max-width: 250px;
+  max-height: 250px;
+}
