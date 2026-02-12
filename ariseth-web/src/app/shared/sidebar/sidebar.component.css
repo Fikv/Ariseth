@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+}
+
+.sidebar {
+  height: 90%;
+  width: 2%;
+  display: flex;
+  justify-content: center;
+  background-color:rgba(214, 210, 196, 0.91);
+  margin-top: 2%; /** change that **/
+  border-radius: 30px;
+  margin-left: 1%;
+  justify-content: center;
+}
+
+.button1 {
+    padding: 2vh;
+    height: 1vh;
+    width: 1vw;
+}
