@@ -99,7 +99,7 @@ input::placeholder {
   position: relative;
   width: 82%;
   height: clamp(20px, 7vh, 40px);
-  color: rgba(12, 13, 19, 0.99);
+  color: rgba(18, 20, 29, 0.99);
   border-radius: 5px;
   transform: translateX(10%);
   border-style: none;
