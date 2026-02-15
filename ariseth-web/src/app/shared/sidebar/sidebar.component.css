@@ -1,21 +1,50 @@
-body {
-    background-color: black;
+:host {
+  display: block;
 }
 
 .sidebar {
-  height: 90%;
-  width: 2%;
+  position: fixed;
+  left: 1%;
+  top: 5%;
+  height: 90vh;
+  width: 56px;
+
   display: flex;
-  justify-content: center;
-  background-color:rgba(214, 210, 196, 0.91);
-  margin-top: 2%; /** change that **/
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px 0;
+  background-color: rgba(214, 210, 196, 0.91);
   border-radius: 30px;
-  margin-left: 1%;
-  justify-content: center;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-.button1 {
-    padding: 2vh;
-    height: 1vh;
-    width: 1vw;
+
+.sidebar-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+
+.sidebar-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+}
+
+.sidebar-btn i {
+  font-size: 20px;
+  color: #222;
 }

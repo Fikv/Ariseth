@@ -1,7 +1,10 @@
 <div class="sidebar">
-  <div class = "button1"> 
-    <button>a</button>
-    <i></i>
-  </div>
-
+  <button
+    class="sidebar-btn"
+    *ngFor="let item of menu"
+    [title]="item.label"
+    (click)="item.action()"
+  >
+    <i class="{{ item.icon }}"></i>
+  </button>
 </div>
