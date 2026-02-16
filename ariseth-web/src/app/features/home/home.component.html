@@ -1,3 +1,18 @@
-<app-sidebar>
-    
-</app-sidebar>
+<div class="dashboard-layout">
+  <app-sidebar></app-sidebar>
+
+  <main class="dashboard-content">
+    <header class="dashboard-header">
+      <h1>Dashboard</h1>
+      <p>Overview of your key metrics</p>
+    </header>
+
+    <section class="cards-grid">
+      <article class="dashboard-card" *ngFor="let card of cards">
+        <h2>{{ card.title }}</h2>
+        <p class="card-value">{{ card.value }}</p>
+        <p class="card-trend">{{ card.trend }}</p>
+      </article>
+    </section>
+  </main>
+</div>
