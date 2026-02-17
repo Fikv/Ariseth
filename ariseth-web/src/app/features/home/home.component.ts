@@ -11,9 +11,11 @@ import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 })
 export class HomeComponent {
   readonly cards = [
-    { title: 'Active Users', value: '1,248', trend: '+8.2% this week' },
-    { title: 'Revenue', value: '$42,890', trend: '+5.1% this month' },
-    { title: 'New Orders', value: '316', trend: '+12.4% today' },
-    { title: 'Conversion Rate', value: '3.9%', trend: '+0.6% from last period' }
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-wide' },
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-tall' },
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-round' },
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-angled' },
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-pill' },
+    { title: 'Card1', value: '1', trend: '2', layoutClass: 'card-shape-cut' }
   ];
 }

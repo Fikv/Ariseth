@@ -8,7 +8,7 @@
     </header>
 
     <section class="cards-grid">
-      <article class="dashboard-card" *ngFor="let card of cards">
+      <article class="dashboard-card" *ngFor="let card of cards" [ngClass]="card.layoutClass">
         <h2>{{ card.title }}</h2>
         <p class="card-value">{{ card.value }}</p>
         <p class="card-trend">{{ card.trend }}</p>
