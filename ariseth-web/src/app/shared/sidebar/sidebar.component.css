@@ -15,10 +15,13 @@
   gap: 16px;
 
   padding: 16px 0;
-  background-color: rgba(214, 210, 196, 0.91);
+  background-color: rgba(12, 13, 19, 0.94);
   border-radius: 30px;
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 
@@ -40,11 +43,15 @@
 
 
 .sidebar-btn:hover {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 208, 65, 0.18);
   transform: scale(1.1);
 }
 
 .sidebar-btn i {
   font-size: 20px;
-  color: #222;
+  color: #bdbdbd;
+}
+
+.sidebar-btn:hover i {
+  color: rgba(255, 208, 65, 0.91);
 }
