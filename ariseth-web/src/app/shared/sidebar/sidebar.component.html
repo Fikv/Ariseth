@@ -5,6 +5,20 @@
     [title]="item.label"
     (click)="item.action()"
   >
-    <i class="{{ item.icon }}"></i>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="sidebar-svg-icon"
+    >
+      <path
+        *ngFor="let path of item.iconPaths"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        [attr.d]="path"
+      />
+    </svg>
   </button>
 </div>

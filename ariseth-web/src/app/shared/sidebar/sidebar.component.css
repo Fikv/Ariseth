@@ -52,6 +52,16 @@
   color: #bdbdbd;
 }
 
+.sidebar-svg-icon {
+  width: 20px;
+  height: 20px;
+  color: #bdbdbd;
+}
+
 .sidebar-btn:hover i {
+  color: rgba(255, 208, 65, 0.91);
+}
+
+.sidebar-btn:hover .sidebar-svg-icon {
   color: rgba(255, 208, 65, 0.91);
 }
