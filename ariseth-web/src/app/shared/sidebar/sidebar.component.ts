@@ -18,6 +18,11 @@ export class SidebarComponent {
     'M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'
   ];
 
+  dayplannerIconPaths = [
+    'M6.75 3v2.25M17.25 3v2.25M3.75 9.75h16.5M4.875 5.25h14.25c.621 0 1.125.504 1.125 1.125v12.75c0 .621-.504 1.125-1.125 1.125H4.875a1.125 1.125 0 0 1-1.125-1.125V6.375c0-.621.504-1.125 1.125-1.125Z',
+    'M8.25 13.5h2.25v2.25H8.25z'
+  ];
+
   userIconPaths = [
     'M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
   ];
@@ -36,6 +41,11 @@ export class SidebarComponent {
       label: 'Settings',
       iconPaths: this.settingsIconPaths,
       action: () => console.log('Settings clicked')
+    },
+    {
+      label: 'Dayplanner',
+      iconPaths: this.dayplannerIconPaths,
+      action: () => console.log('Dayplanner clicked')
     },
     {
       label: 'Profile',
