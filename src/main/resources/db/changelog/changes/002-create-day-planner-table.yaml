@@ -1,0 +1,164 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: fikv
+      comment: day planning and tasks init
+      changes:
+        - createTable:
+            tableName: day_plans
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: plan_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notes
+                  type: varchar(500)
+              - column:
+                  name: created_timestamp
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_timestamp
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: day_plans
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_day_plans_user
+            onDelete: CASCADE
+
+        - addUniqueConstraint:
+            tableName: day_plans
+            columnNames: user_id, plan_date
+            constraintName: uq_day_plans_user_date
+
+        - createIndex:
+            tableName: day_plans
+            indexName: idx_day_plans_user_date
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: plan_date
+
+        - createTable:
+            tableName: tasks
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: day_plan_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(1000)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: TODO
+                  constraints:
+                    nullable: false
+              - column:
+                  name: priority
+                  type: varchar(12)
+                  defaultValue: MEDIUM
+                  constraints:
+                    nullable: false
+              - column:
+                  name: starts_at
+                  type: timestamp
+              - column:
+                  name: ends_at
+                  type: timestamp
+              - column:
+                  name: completed_timestamp
+                  type: timestamp
+              - column:
+                  name: sort_order
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_timestamp
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_timestamp
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: tasks
+            baseColumnNames: day_plan_id
+            referencedTableName: day_plans
+            referencedColumnNames: id
+            constraintName: fk_tasks_day_plan
+            onDelete: CASCADE
+
+        - addCheckConstraint:
+            tableName: tasks
+            constraintName: chk_tasks_status
+            validate: true
+            checkConstraint: status IN ('TODO', 'IN_PROGRESS', 'DONE', 'CANCELLED')
+
+        - addCheckConstraint:
+            tableName: tasks
+            constraintName: chk_tasks_priority
+            validate: true
+            checkConstraint: priority IN ('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')
+
+        - createIndex:
+            tableName: tasks
+            indexName: idx_tasks_day_plan_sort
+            columns:
+              - column:
+                  name: day_plan_id
+              - column:
+                  name: sort_order
+
+        - createIndex:
+            tableName: tasks
+            indexName: idx_tasks_day_plan_status
+            columns:
+              - column:
+                  name: day_plan_id
+              - column:
+                  name: status
