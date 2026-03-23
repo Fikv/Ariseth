@@ -133,18 +133,6 @@ databaseChangeLog:
             constraintName: fk_tasks_day_plan
             onDelete: CASCADE
 
-        - addCheckConstraint:
-            tableName: tasks
-            constraintName: chk_tasks_status
-            validate: true
-            checkConstraint: status IN ('TODO', 'IN_PROGRESS', 'DONE', 'CANCELLED')
-
-        - addCheckConstraint:
-            tableName: tasks
-            constraintName: chk_tasks_priority
-            validate: true
-            checkConstraint: priority IN ('LOW', 'MEDIUM', 'HIGH', 'CRITICAL')
-
         - createIndex:
             tableName: tasks
             indexName: idx_tasks_day_plan_sort
