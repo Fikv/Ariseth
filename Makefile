@@ -12,7 +12,7 @@ setup:
 	@if [ ! -f .env ]; then cp .env.example .env; fi
 
 run: setup
-	set -a && . ./.env && set +a && ./gradlew bootRun
+	set -a && . ./.env && set +a && ./gradlew bootRun --args="--server.port=3000"
 
 test: setup
 	set -a && . ./.env && set +a && ./gradlew test
