@@ -29,6 +29,70 @@
   color: #bdbdbd;
 }
 
+.task-template-panel {
+  background: rgba(12, 13, 19, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.task-template-panel h2 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  color: rgba(255, 208, 65, 0.95);
+}
+
+.task-template-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.task-template-btn {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  color: #e6e6e6;
+  padding: 8px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.task-template-btn-active {
+  border-color: rgba(255, 208, 65, 0.8);
+  background: rgba(255, 208, 65, 0.12);
+  color: rgba(255, 208, 65, 1);
+}
+
+.task-template-details {
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+}
+
+.task-template-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #f1f1f1;
+}
+
+.task-template-details p {
+  margin: 8px 0 0;
+  color: #bdbdbd;
+}
+
+.task-template-meta {
+  color: #9ea1b0;
+  font-size: 0.9rem;
+}
+
+.task-template-details ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: #cfd2dd;
+}
+
 .cards-grid {
   flex: 1;
   min-height: 0;
@@ -116,6 +180,15 @@
   .dashboard-content {
     margin-left: 0;
     padding: 20px 16px 28px;
+  }
+
+  .task-template-buttons {
+    flex-direction: column;
+  }
+
+  .task-template-btn {
+    width: 100%;
+    text-align: left;
   }
 
   .cards-grid {

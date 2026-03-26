@@ -7,6 +7,31 @@
       <p>Overview of your key metrics</p>
     </header>
 
+    <section class="task-template-panel">
+      <h2>Choose Task Template</h2>
+      <div class="task-template-buttons">
+        <button
+          *ngFor="let template of taskTemplates"
+          class="task-template-btn"
+          [class.task-template-btn-active]="template.id === selectedTaskTemplateId"
+          (click)="selectTaskTemplate(template.id)"
+          type="button"
+        >
+          {{ template.name }}
+        </button>
+      </div>
+      <article class="task-template-details">
+        <h3>{{ selectedTaskTemplate.name }}</h3>
+        <p>{{ selectedTaskTemplate.description }}</p>
+        <p class="task-template-meta">
+          {{ selectedTaskTemplate.durationMinutes }} min | Priority: {{ selectedTaskTemplate.priority }}
+        </p>
+        <ul>
+          <li *ngFor="let item of selectedTaskTemplate.checklist">{{ item }}</li>
+        </ul>
+      </article>
+    </section>
+
     <section class="cards-grid">
       <article class="dashboard-card" *ngFor="let card of cards" [ngClass]="card.layoutClass">
         <h2>{{ card.title }}</h2>
