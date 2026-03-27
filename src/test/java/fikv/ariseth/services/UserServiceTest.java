@@ -152,7 +152,7 @@ class UserServiceTest {
     @Test
     void loadUserByUsername_shouldReturnUserDetails() {
         when(userRepository.findByLogin("john")).thenReturn(Optional.of(user));
-        when(userMapper.toUserDetail(user)).thenReturn((UserDetailsImpl) mock(UserDetails.class));
+        when(userMapper.toUserDetail(user)).thenReturn(mock(UserDetailsImpl.class));
 
         assertThatCode(() -> userService.loadUserByUsername("john"))
                 .doesNotThrowAnyException();
