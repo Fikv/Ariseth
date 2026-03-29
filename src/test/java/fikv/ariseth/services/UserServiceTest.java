@@ -150,12 +150,28 @@ class UserServiceTest {
     }
 
     @Test
-    void loadUserByUsername_shouldReturnUserDetails() {
-        when(userRepository.findByLogin("john")).thenReturn(Optional.of(user));
-        when(userMapper.toUserDetail(user)).thenReturn(mock(UserDetailsImpl.class));
+    void verify_shouldReturnNullToken_whenAuthenticationFails() {
+        when(applicationContext.getBean(AuthenticationManager.class))
+                .thenReturn(authenticationManager);
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(authentication);
+        when(authentication.isAuthenticated()).thenReturn(false);
 
-        assertThatCode(() -> userService.loadUserByUsername("john"))
-                .doesNotThrowAnyException();
+        LoginResponse loginResponse = userService.verify(userRequestDTO);
+
+        assertThat(loginResponse.token()).isNull();
+        verify(jwtService, never()).generateToken(anyString());
+    }
+
+    @Test
+    void loadUserByUsername_shouldReturnUserDetails() {
+        UserDetailsImpl userDetails = mock(UserDetailsImpl.class);
+        when(userRepository.findByLogin("john")).thenReturn(Optional.of(user));
+        when(userMapper.toUserDetail(user)).thenReturn(userDetails);
+
+        UserDetails result = userService.loadUserByUsername("john");
+
+        assertThat(result).isSameAs(userDetails);
     }
 
     @Test

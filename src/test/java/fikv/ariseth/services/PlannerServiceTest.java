@@ -28,6 +28,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -133,6 +134,27 @@ class PlannerServiceTest {
     }
 
     @Test
+    void getDayPlanById_shouldReturnMappedResult() {
+        dayPlanner.setTasks(List.of(task));
+        when(dayPlannerRepository.findById(10L)).thenReturn(Optional.of(dayPlanner));
+
+        DayPlannerResponseDTO result = plannerService.getDayPlanById(10L);
+
+        assertThat(result.id()).isEqualTo(10L);
+        assertThat(result.userId()).isEqualTo(1L);
+        assertThat(result.tasks()).hasSize(1);
+    }
+
+    @Test
+    void getDayPlanById_shouldThrowWhenNotFound() {
+        when(dayPlannerRepository.findById(999L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.getDayPlanById(999L))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Day plan not found");
+    }
+
+    @Test
     void updateDayPlan_shouldSwitchUserWhenUserChanged() {
         User otherUser = new User();
         otherUser.setId(2L);
@@ -153,6 +175,45 @@ class PlannerServiceTest {
         assertThat(result.userId()).isEqualTo(2L);
         assertThat(result.planDate()).isEqualTo(LocalDate.of(2026, 4, 1));
         assertThat(result.notes()).isEqualTo("Updated notes");
+    }
+
+    @Test
+    void updateDayPlan_shouldKeepUserWhenUserIsUnchanged() {
+        DayPlannerRequestDTO request = new DayPlannerRequestDTO(
+                1L,
+                LocalDate.of(2026, 4, 2),
+                "Same user update"
+        );
+
+        when(dayPlannerRepository.findById(10L)).thenReturn(Optional.of(dayPlanner));
+        when(dayPlannerRepository.save(any(DayPlanner.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        DayPlannerResponseDTO result = plannerService.updateDayPlan(10L, request);
+
+        assertThat(result.userId()).isEqualTo(1L);
+        assertThat(result.notes()).isEqualTo("Same user update");
+        verify(userRepository, never()).findById(any(Long.class));
+    }
+
+    @Test
+    void updateDayPlan_shouldThrowWhenPlanNotFound() {
+        DayPlannerRequestDTO request = new DayPlannerRequestDTO(1L, LocalDate.of(2026, 4, 2), "No plan");
+        when(dayPlannerRepository.findById(404L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.updateDayPlan(404L, request))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Day plan not found");
+    }
+
+    @Test
+    void updateDayPlan_shouldThrowWhenNewUserNotFound() {
+        DayPlannerRequestDTO request = new DayPlannerRequestDTO(2L, LocalDate.of(2026, 4, 2), "No user");
+        when(dayPlannerRepository.findById(10L)).thenReturn(Optional.of(dayPlanner));
+        when(userRepository.findById(2L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.updateDayPlan(10L, request))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("User not found");
     }
 
     @Test
@@ -184,6 +245,37 @@ class PlannerServiceTest {
         assertThat(response.status()).isEqualTo(TaskStatus.IN_PROGRESS);
         assertThat(response.priority()).isEqualTo(TaskPriority.CRITICAL);
         assertThat(response.sortOrder()).isEqualTo(2);
+    }
+
+    @Test
+    void createTask_shouldThrowWhenDayPlanNotFound() {
+        TaskRequestDTO request = new TaskRequestDTO(
+                999L,
+                "Task title",
+                "Task description",
+                TaskStatus.TODO,
+                TaskPriority.LOW,
+                null,
+                null,
+                null,
+                1
+        );
+        when(dayPlannerRepository.findById(999L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.createTask(request))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Day plan not found");
+    }
+
+    @Test
+    void getTaskById_shouldReturnMappedResult() {
+        when(taskRepository.findById(100L)).thenReturn(Optional.of(task));
+
+        TaskResponseDTO result = plannerService.getTaskById(100L);
+
+        assertThat(result.id()).isEqualTo(100L);
+        assertThat(result.dayPlanId()).isEqualTo(10L);
+        assertThat(result.title()).isEqualTo("Write tests");
     }
 
     @Test
@@ -233,6 +325,47 @@ class PlannerServiceTest {
         assertThat(result.title()).isEqualTo("Updated task");
         assertThat(result.status()).isEqualTo(TaskStatus.DONE);
         assertThat(result.sortOrder()).isEqualTo(3);
+    }
+
+    @Test
+    void updateTask_shouldThrowWhenTaskNotFound() {
+        TaskRequestDTO request = new TaskRequestDTO(
+                10L,
+                "Updated task",
+                "Updated description",
+                TaskStatus.DONE,
+                TaskPriority.MEDIUM,
+                null,
+                null,
+                null,
+                3
+        );
+        when(taskRepository.findById(404L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.updateTask(404L, request))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Task not found");
+    }
+
+    @Test
+    void updateTask_shouldThrowWhenDayPlanNotFound() {
+        TaskRequestDTO request = new TaskRequestDTO(
+                12L,
+                "Updated task",
+                "Updated description",
+                TaskStatus.DONE,
+                TaskPriority.MEDIUM,
+                null,
+                null,
+                null,
+                3
+        );
+        when(taskRepository.findById(100L)).thenReturn(Optional.of(task));
+        when(dayPlannerRepository.findById(12L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> plannerService.updateTask(100L, request))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("Day plan not found");
     }
 
     @Test
