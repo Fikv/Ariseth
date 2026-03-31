@@ -1,12 +1,15 @@
 package fikv.ariseth.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fikv.ariseth.dtos.LoginResponse;
 import fikv.ariseth.dtos.UserRequestDTO;
 import fikv.ariseth.entities.User;
 import fikv.ariseth.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,7 +23,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 
-@WebMvcTest(UserController.class)
+@WebMvcTest(
+        value = UserController.class,
+        excludeAutoConfiguration = {
+                SecurityAutoConfiguration.class,
+                SecurityFilterAutoConfiguration.class
+        }
+)
 class UserControllerTest {
 
     @Autowired
@@ -49,13 +58,13 @@ class UserControllerTest {
     void login() throws Exception {
         UserRequestDTO dto = new UserRequestDTO("User", "password", "email@example.com");
 
-        given(userService.verify(any(UserRequestDTO.class)).token()).willReturn("token");
+        given(userService.verify(any(UserRequestDTO.class))).willReturn(new LoginResponse("token"));
 
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("token"));
+                .andExpect(content().json("{\"token\":\"token\"}"));
     }
 
     @Test
