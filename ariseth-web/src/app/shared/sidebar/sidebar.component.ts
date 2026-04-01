@@ -12,27 +12,27 @@ export class SidebarComponent {
   menu = [
     {
       label: 'Home',
-      iconClass: 'icon-home',
+      icon: 'home',
       action: () => console.log('Home clicked')
     },
     {
       label: 'Settings',
-      iconClass: 'icon-settings',
+      icon: 'settings',
       action: () => console.log('Settings clicked')
     },
     {
       label: 'Dayplanner',
-      iconClass: 'icon-dayplanner',
+      icon: 'dayplanner',
       action: () => console.log('Dayplanner clicked')
     },
     {
       label: 'Profile',
-      iconClass: 'icon-profile',
+      icon: 'profile',
       action: () => console.log('Profile clicked')
     },
     {
       label: 'Logo',
-      iconClass: 'icon-logo',
+      icon: 'logo',
       action: () => console.log('Logo clicked')
     }
   ];
