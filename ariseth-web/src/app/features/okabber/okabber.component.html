@@ -1,0 +1,115 @@
+<div class="okabber-layout">
+  <app-sidebar></app-sidebar>
+
+  <main class="okabber-content">
+    <header class="okabber-header">
+      <div>
+        <p class="eyebrow">Okabber Planner</p>
+        <h1>Weekly focus board</h1>
+        <p class="subcopy">A calendar-style command center for meetings, focus blocks, and quick planning.</p>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="ghost-action">Today</button>
+        <button type="button" class="primary-action">+ New block</button>
+      </div>
+    </header>
+
+    <section class="okabber-shell">
+      <aside class="planner-sidebar">
+        <article class="create-card">
+          <button type="button">+ Create</button>
+        </article>
+
+        <article class="mini-calendar-card">
+          <div class="mini-calendar-header">
+            <h2>April 2026</h2>
+            <span>Week 16</span>
+          </div>
+
+          <div class="mini-calendar-weekdays">
+            <span>Mo</span>
+            <span>Tu</span>
+            <span>We</span>
+            <span>Th</span>
+            <span>Fr</span>
+            <span>Sa</span>
+            <span>Su</span>
+          </div>
+
+          <div class="mini-calendar-grid">
+            <button
+              *ngFor="let day of miniCalendarDays"
+              type="button"
+              class="mini-day"
+              [class.mini-day-muted]="day.muted"
+              [class.mini-day-active]="day.active"
+            >
+              {{ day.value }}
+            </button>
+          </div>
+        </article>
+
+        <article class="agenda-card">
+          <div class="card-heading">
+            <h2>Upcoming</h2>
+            <span>Today</span>
+          </div>
+
+          <div class="agenda-list">
+            <div class="agenda-item" *ngFor="let task of upcomingTasks">
+              <strong>{{ task.time }}</strong>
+              <div>
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.meta }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </aside>
+
+      <section class="calendar-card">
+        <div class="calendar-toolbar">
+          <div>
+            <p class="eyebrow">Schedule</p>
+            <h2>April 14 - 20</h2>
+          </div>
+
+          <div class="toolbar-pills">
+            <span class="pill pill-active">Week</span>
+            <span class="pill">Month</span>
+            <span class="pill">Agenda</span>
+          </div>
+        </div>
+
+        <div class="calendar-grid">
+          <div class="time-corner"></div>
+
+          <div class="day-header" *ngFor="let day of days" [class.day-header-today]="day.isToday">
+            <span>{{ day.label }}</span>
+            <strong>{{ day.date }}</strong>
+          </div>
+
+          <ng-container *ngFor="let slot of timeSlots; trackBy: trackByTime">
+            <div class="time-label">{{ slot.time }}</div>
+
+            <div class="time-row" *ngFor="let day of days; let dayIndex = index" [class.time-row-highlight]="dayIndex === 1"></div>
+          </ng-container>
+
+          <article
+            *ngFor="let event of events"
+            class="calendar-event"
+            [class.event-amber]="event.accent === 'amber'"
+            [class.event-blue]="event.accent === 'blue'"
+            [class.event-mint]="event.accent === 'mint'"
+            [class.event-rose]="event.accent === 'rose'"
+            [ngStyle]="getEventStyle(event)"
+          >
+            <span>{{ event.category }}</span>
+            <h3>{{ event.title }}</h3>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
