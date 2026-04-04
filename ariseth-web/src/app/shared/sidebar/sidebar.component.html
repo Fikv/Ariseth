@@ -1,10 +1,13 @@
 <div class="sidebar">
-  <button
+  <a
     class="sidebar-btn"
     *ngFor="let item of menu"
+    #linkActive="routerLinkActive"
     [title]="item.label"
-    (click)="item.action()"
-    type="button"
+    [routerLink]="item.route"
+    routerLinkActive="sidebar-btn-active"
+    [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' || item.route === '/okabber' }"
+    [attr.aria-current]="linkActive.isActive ? 'page' : null"
   >
     <svg
       class="sidebar-icon"
@@ -53,5 +56,5 @@
         <rect x="10" y="10" width="4" height="4" fill="currentColor" stroke="none" transform="rotate(45 12 12)" />
       </ng-container>
     </svg>
-  </button>
+  </a>
 </div>

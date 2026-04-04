@@ -1,39 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
-  menu = [
+  readonly menu = [
     {
       label: 'Home',
       icon: 'home',
-      action: () => console.log('Home clicked')
+      route: '/dashboard'
     },
     {
-      label: 'Settings',
-      icon: 'settings',
-      action: () => console.log('Settings clicked')
-    },
-    {
-      label: 'Dayplanner',
+      label: 'Okabber',
       icon: 'dayplanner',
-      action: () => console.log('Dayplanner clicked')
-    },
-    {
-      label: 'Profile',
-      icon: 'profile',
-      action: () => console.log('Profile clicked')
+      route: '/okabber'
     },
     {
       label: 'Logo',
       icon: 'logo',
-      action: () => console.log('Logo clicked')
+      route: '/dashboard'
     }
   ];
 }

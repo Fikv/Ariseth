@@ -33,6 +33,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   display: flex;
   align-items: center;
@@ -47,6 +48,11 @@
   transform: scale(1.1);
 }
 
+.sidebar-btn-active {
+  background: rgba(255, 208, 65, 0.16);
+  box-shadow: 0 0 0 1px rgba(255, 208, 65, 0.22);
+}
+
 .sidebar-icon {
   width: 20px;
   height: 20px;
@@ -57,4 +63,8 @@
 
 .sidebar-btn:hover .sidebar-icon {
   color: rgba(255, 208, 65, 0.91);
+}
+
+.sidebar-btn-active .sidebar-icon {
+  color: rgba(255, 208, 65, 0.96);
 }
