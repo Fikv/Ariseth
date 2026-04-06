@@ -3,6 +3,7 @@ import { LoginViewComponent } from './features/auth/page/login-view/login-view.c
 import { loginGuard } from './core/auth/login.guard';
 import { authGuard } from './core/auth/auth.guard';
 import { HomeComponent } from './features/home/home.component';
+import { OkabberComponent } from './features/okabber/okabber.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -12,6 +13,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: HomeComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'okabber',
+    component: OkabberComponent,
     canActivate: [authGuard]
   },
   {
