@@ -1,5 +1,23 @@
 <div class="sidebar">
-  <button class="sidebar-button" type="button" aria-label="Kalendarz" title="Kalendarz">
-    <svg lucideCalendar size="22" strokeWidth="2"></svg>
-  </button>
+  <nav class="sidebar-nav" aria-label="Primary navigation">
+    <a
+      class="sidebar-link"
+      routerLink="/home"
+      routerLinkActive="sidebar-link-active"
+      aria-label="Home"
+      title="Home"
+    >
+      <svg lucideHome size="21" strokeWidth="1.8"></svg>
+    </a>
+
+    <a
+      class="sidebar-link"
+      routerLink="/planner"
+      routerLinkActive="sidebar-link-active"
+      aria-label="Planner"
+      title="Planner"
+    >
+      <svg lucideCalendar size="21" strokeWidth="1.8"></svg>
+    </a>
+  </nav>
 </div>

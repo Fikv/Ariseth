@@ -1,18 +1,52 @@
-<div class="container">
-  <form class="loginForm">
-    <label class="loginText">SIGN IN</label>
-    <div class="loginInputDiv">
-      <input class="loginInput" placeholder="Login" [value]="loginInput()"
-        (input)="loginInput.set($any($event.target).value)" (keydown.enter)="onLogin()">
-      <i class="fa fa-user"></i>
-    </div>
-    <div class="passwordInputDiv">
-      <input class="passwordInput" placeholder="Password" type="password" [value]="passwordInput()"
-        (input)="passwordInput.set($any($event.target).value)" (keydown.enter)="onLogin()">
-      <i class="fa fa-key"></i>
-    </div>
-    <button class="signInButton" (click)="onLogin()" type="button">SIGN IN</button>
-  </form>
-  <img src="/ariseth-web/src/assets/Logo.svg" alt="Logo" class="logo">
+<main class="login-shell">
+  <app-theme-toggle class="login-theme-toggle"></app-theme-toggle>
 
-</div>
+  <section class="login-panel" aria-labelledby="login-title">
+    <header class="login-header">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <div>
+        <p class="brand-name">ARISETH</p>
+        <p class="brand-edition">BLACK / WHITE</p>
+      </div>
+    </header>
+
+    <form class="login-form" (submit)="$event.preventDefault(); onLogin()">
+      <div class="form-heading">
+        <p class="section-index">01 / ACCESS</p>
+        <h1 id="login-title">Sign in</h1>
+      </div>
+
+      <label for="login">Login</label>
+      <input
+        id="login"
+        name="login"
+        type="text"
+        autocomplete="username"
+        placeholder="Enter your login"
+        [value]="loginInput()"
+        (input)="loginInput.set($any($event.target).value)"
+      >
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter your password"
+        [value]="passwordInput()"
+        (input)="passwordInput.set($any($event.target).value)"
+      >
+
+      <button class="sign-in-button" type="submit">
+        <span>Enter workspace</span>
+        <svg lucideArrowUpRight size="18" strokeWidth="1.8" aria-hidden="true"></svg>
+      </button>
+    </form>
+
+    <footer class="login-footer">
+      <span>AR / 001</span>
+      <span>SECURE ACCESS</span>
+    </footer>
+  </section>
+</main>

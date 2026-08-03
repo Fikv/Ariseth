@@ -11,22 +11,32 @@ export const routes: Routes = [
     canActivate: [loginGuard]
   },
   {
-    path: 'dashboard',
+    path: 'home',
     component: HomeComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'okabber',
+    path: 'planner',
     component: OkabberComponent,
     canActivate: [authGuard]
   },
   {
+    path: 'dashboard',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'okabber',
+    redirectTo: 'planner',
+    pathMatch: 'full'
+  },
+  {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'home'
   }
 ];

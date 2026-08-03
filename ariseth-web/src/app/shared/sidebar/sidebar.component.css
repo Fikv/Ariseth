@@ -4,27 +4,42 @@
 
 .sidebar {
   position: fixed;
-  left: 1%;
-  top: 5%;
-  height: 90vh;
-  width: 56px;
+  left: var(--app-sidebar-left);
+  top: var(--app-panel-vertical-gutter);
+  bottom: var(--app-panel-vertical-gutter);
+  width: var(--app-sidebar-width);
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 
-  padding: 16px 0;
-  background-color: rgba(12, 13, 19, 0.94);
-  border-radius: 30px;
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: var(--page-ink);
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 10px;
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+    0 20px 40px var(--sidebar-shadow),
+    inset 0 0 0 1px var(--surface-inner-border);
+  z-index: 10;
+  transition:
+    color 240ms ease,
+    background-color 240ms ease,
+    border-color 240ms ease;
 }
 
-.sidebar-button {
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-link {
   width: 40px;
   height: 40px;
 
@@ -32,28 +47,52 @@
   align-items: center;
   justify-content: center;
 
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--icon-color);
   background: transparent;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
+  text-decoration: none;
   transition:
     background-color 160ms ease,
     color 160ms ease,
     transform 160ms ease;
 }
 
-.sidebar-button:hover,
-.sidebar-button:focus-visible {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
+.sidebar-link:hover,
+.sidebar-link:focus-visible,
+.sidebar-link-active {
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  border-color: var(--accent-border);
 }
 
-.sidebar-button:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.46);
+.sidebar-link:focus-visible {
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
-.sidebar-button:active {
+.sidebar-link:active {
   transform: scale(0.96);
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    top: auto;
+    right: var(--app-page-gutter);
+    bottom: var(--app-page-gutter);
+    left: var(--app-page-gutter);
+    width: auto;
+    height: var(--app-mobile-sidebar-height);
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 8px;
+    overflow: hidden;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+  }
+
 }

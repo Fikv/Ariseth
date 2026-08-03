@@ -1,0 +1,25 @@
+<div class="theme-switch" role="group" aria-label="Color theme">
+  <button
+    class="theme-option"
+    type="button"
+    [class.theme-option-active]="!themeService.isDark()"
+    [attr.aria-pressed]="!themeService.isDark()"
+    title="Day theme"
+    (click)="themeService.changeTheme('light')"
+  >
+    <img class="theme-icon" src="assets/day_icon.png" alt="">
+    <span>DAY</span>
+  </button>
+
+  <button
+    class="theme-option"
+    type="button"
+    [class.theme-option-active]="themeService.isDark()"
+    [attr.aria-pressed]="themeService.isDark()"
+    title="Night theme"
+    (click)="themeService.changeTheme('dark')"
+  >
+    <img class="theme-icon" src="assets/night_icon.png" alt="">
+    <span>NIGHT</span>
+  </button>
+</div>
