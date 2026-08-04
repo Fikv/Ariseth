@@ -1,25 +1,18 @@
-<div class="theme-switch" role="group" aria-label="Color theme">
-  <button
-    class="theme-option"
-    type="button"
-    [class.theme-option-active]="!themeService.isDark()"
-    [attr.aria-pressed]="!themeService.isDark()"
-    title="Day theme"
-    (click)="themeService.changeTheme('light')"
-  >
-    <img class="theme-icon" src="assets/day_icon.png" alt="">
-    <span>DAY</span>
-  </button>
+<button
+  class="theme-slider"
+  type="button"
+  role="switch"
+  [class.is-dark]="themeService.isDark()"
+  [attr.aria-checked]="themeService.isDark()"
+  [attr.aria-label]="themeService.isDark() ? 'Switch to day theme' : 'Switch to night theme'"
+  [title]="themeService.isDark() ? 'Day theme' : 'Night theme'"
+  (click)="themeService.toggleTheme()"
+>
+  <span class="mode-label mode-label-day" aria-hidden="true">DAY</span>
+  <span class="mode-label mode-label-night" aria-hidden="true">NIGHT</span>
 
-  <button
-    class="theme-option"
-    type="button"
-    [class.theme-option-active]="themeService.isDark()"
-    [attr.aria-pressed]="themeService.isDark()"
-    title="Night theme"
-    (click)="themeService.changeTheme('dark')"
-  >
-    <img class="theme-icon" src="assets/night_icon.png" alt="">
-    <span>NIGHT</span>
-  </button>
-</div>
+  <span class="slider-thumb" aria-hidden="true">
+    <img class="theme-icon theme-icon-day" src="assets/day_icon.png" alt="">
+    <img class="theme-icon theme-icon-night" src="assets/night_icon.png" alt="">
+  </span>
+</button>

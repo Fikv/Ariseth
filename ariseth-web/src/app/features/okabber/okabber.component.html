@@ -1,3 +1,183 @@
-
 <app-sidebar></app-sidebar>
-<app-content-panel></app-content-panel>
+
+<app-content-panel>
+  <section class="planner">
+    <header class="planner-header">
+      <div class="period-navigation">
+        <button class="icon-button" type="button" title="Poprzedni okres" aria-label="Poprzedni okres" (click)="navigate(-1)">
+          <svg lucideChevronLeft size="20" strokeWidth="1.8"></svg>
+        </button>
+        <button class="today-button" type="button" (click)="goToToday()">Dzisiaj</button>
+        <button class="icon-button" type="button" title="Następny okres" aria-label="Następny okres" (click)="navigate(1)">
+          <svg lucideChevronRight size="20" strokeWidth="1.8"></svg>
+        </button>
+        <h1>{{ rangeTitle() }}</h1>
+      </div>
+
+      <div class="planner-actions">
+        <div class="view-switch" role="group" aria-label="Zakres kalendarza">
+          <button type="button" [class.active]="view() === 'week'" (click)="setView('week')">Tydzień</button>
+          <button type="button" [class.active]="view() === 'month'" (click)="setView('month')">Miesiąc</button>
+          <button type="button" [class.active]="view() === 'year'" (click)="setView('year')">Rok</button>
+        </div>
+        <button class="add-task-button" type="button" (click)="openNewTask()">
+          <svg lucideCalendarPlus size="18" strokeWidth="1.8"></svg>
+          <span>Dodaj zadanie</span>
+        </button>
+      </div>
+    </header>
+
+    @switch (view()) {
+      @case ('week') {
+        <div class="week-scroll">
+          <div class="week-timeline">
+            <div class="time-column">
+              <div class="time-header"></div>
+              @for (hour of hours; track hour) {
+                <div class="time-label">{{ hour.toString().padStart(2, '0') }}:00</div>
+              }
+            </div>
+
+            <div class="week-board">
+              <div class="week-days-header">
+                @for (day of weekDays(); track day.getTime(); let index = $index) {
+                  <button type="button" [class.today]="isToday(day)" (click)="openNewTask(day)">
+                    <span>{{ weekDayLabels[index] }}</span>
+                    <strong>{{ dayNumber(day) }}</strong>
+                  </button>
+                }
+              </div>
+
+              <div class="week-grid">
+                @for (hour of hours; track hour; let index = $index) {
+                  <div class="hour-line" [style.top.px]="index * 64"></div>
+                }
+
+                <div class="day-columns">
+                  @for (day of weekDays(); track day.getTime()) {
+                    <div class="day-column">
+                      @for (task of tasksForDate(day); track task.id) {
+                        <button
+                          class="timeline-task"
+                          type="button"
+                          [style.top.px]="taskTop(task)"
+                          [style.height.px]="taskHeight(task)"
+                          (click)="editTask(task, $event)"
+                        >
+                          <strong>{{ task.title }}</strong>
+                          <span>{{ task.startTime }}</span>
+                        </button>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      @case ('month') {
+        <div class="month-view">
+          <div class="month-weekdays">
+            @for (label of weekDayLabels; track label) {
+              <span>{{ label }}</span>
+            }
+          </div>
+          <div class="month-grid">
+            @for (day of monthDays(); track day.key) {
+              <div
+                class="month-day"
+                role="button"
+                tabindex="0"
+                [attr.aria-label]="'Dodaj zadanie: ' + day.key"
+                [class.outside-month]="!day.inCurrentMonth"
+                [class.today]="isToday(day.date)"
+                (click)="openNewTask(day.date)"
+                (keydown.enter)="openNewTask(day.date)"
+              >
+                <span class="month-day-number">{{ day.date.getDate() }}</span>
+                <span class="month-tasks">
+                  @for (task of tasksForDate(day.key).slice(0, 3); track task.id) {
+                    <button class="month-task" type="button" (click)="editTask(task, $event)">
+                      <time>{{ task.startTime }}</time> {{ task.title }}
+                    </button>
+                  }
+                  @if (tasksForDate(day.key).length > 3) {
+                    <span class="more-tasks">+{{ tasksForDate(day.key).length - 3 }}</span>
+                  }
+                </span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @case ('year') {
+        <div class="year-grid">
+          @for (month of yearMonths(); track month.monthIndex) {
+            <button class="year-month" type="button" (click)="selectMonth(month.monthIndex)">
+              <span>{{ month.label }}</span>
+              <strong>{{ (month.monthIndex + 1).toString().padStart(2, '0') }}</strong>
+              <small>{{ month.taskCount }} {{ month.taskCount === 1 ? 'zadanie' : 'zadań' }}</small>
+            </button>
+          }
+        </div>
+      }
+    }
+  </section>
+
+  @if (isEditorOpen()) {
+    <div class="editor-backdrop" (click)="closeEditor()">
+      <section class="task-editor" role="dialog" aria-modal="true" aria-labelledby="task-editor-title" (click)="$event.stopPropagation()">
+        <header>
+          <div>
+            <span>ZADANIE</span>
+            <h2 id="task-editor-title">{{ editingTaskId() ? 'Edytuj zadanie' : 'Nowe zadanie' }}</h2>
+          </div>
+          <button class="icon-button" type="button" title="Zamknij" aria-label="Zamknij" (click)="closeEditor()">
+            <svg lucideX size="20" strokeWidth="1.8"></svg>
+          </button>
+        </header>
+
+        <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+          <label for="task-title">Nazwa</label>
+          <input id="task-title" type="text" formControlName="title" maxlength="80" autofocus>
+          @if (taskForm.controls.title.touched && taskForm.controls.title.invalid) {
+            <span class="field-error">Podaj nazwę zadania.</span>
+          }
+
+          <div class="form-row">
+            <div>
+              <label for="task-date">Data</label>
+              <input id="task-date" type="date" formControlName="date">
+            </div>
+            <div>
+              <label for="task-time">Godzina</label>
+              <input id="task-time" type="time" formControlName="startTime" min="00:00" max="23:59">
+            </div>
+          </div>
+
+          <label for="task-duration">Czas trwania</label>
+          <select id="task-duration" formControlName="durationMinutes">
+            <option [ngValue]="30">30 min</option>
+            <option [ngValue]="60">1 godz.</option>
+            <option [ngValue]="90">1,5 godz.</option>
+            <option [ngValue]="120">2 godz.</option>
+            <option [ngValue]="180">3 godz.</option>
+          </select>
+
+          <footer>
+            @if (editingTaskId()) {
+              <button class="delete-button" type="button" (click)="deleteTask()">
+                <svg lucideTrash2 size="17" strokeWidth="1.8"></svg>
+                <span>Usuń</span>
+              </button>
+            }
+            <button class="save-button" type="submit">Zapisz zadanie</button>
+          </footer>
+        </form>
+      </section>
+    </div>
+  }
+</app-content-panel>
